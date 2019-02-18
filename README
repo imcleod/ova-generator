@@ -1,0 +1,15 @@
+This is a quick and dirty script that takes a qcow2 input file and outputs an OVA
+for vSphere
+
+To try it out with an empty qcow2 image:
+
+$ qemu-img create -f qcow2 testimage.qcow2 10G
+$ ./generate-ova.py ./testimage.qcow2 ./default_parameters.json ./testimage.ova
+
+It uses the OVA generation code from Image Factory without actually having to
+run the full factory workflow.
+
+The output is just a tar file with the VMDK and an XML file in it.  Ultimately
+it will likely be simpler and more robust to just use an text XML template and
+a bit of python or shell to do the conversion and tar.  However, for now, this
+works.
